@@ -20,6 +20,7 @@
 #include "app_sntp.h"
 #endif
 #include "app_weather.h"
+#include "app_mqtt_baidubce.h"
 
 EventGroupHandle_t event_group;
 
@@ -60,12 +61,13 @@ void app_main()
   app_wifi_startup();
 
   for (;;) {
-	  uxBits = xEventGroupWaitBits(event_group,WIFI_CONNECTED_BIT | WIFI_SOFTAP_BIT,pdFALSE,pdFALSE,500 / portTICK_PERIOD_MS);
+	  uxBits = xEventGroupWaitBits(event_group, WIFI_CONNECTED_BIT | WIFI_SOFTAP_BIT,pdFALSE,pdFALSE,500 / portTICK_PERIOD_MS);
 	  if (uxBits > 0) {
       #ifdef CONFIG_SNTP_ENABLED
       app_sntp_startup();
       #endif
-      app_weather_startup();
+      // app_weather_startup();
+      app_mqtt_start();
       #ifdef CONFIG_MDNS_ENABLED
       ESP_ERROR_CHECK(mdns_init());
       ESP_ERROR_CHECK(mdns_hostname_set(settings.hostname));

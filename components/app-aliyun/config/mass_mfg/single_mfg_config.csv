@@ -1,0 +1,6 @@
+key,type,encoding,value
+aliyun-key,namespace,,
+DeviceName,data,string,esp32-calendar
+DeviceSecret,data,string,4179c6cd857aff78da4a7c8e7ca7bb5c
+ProductKey,data,string,a1VoLBbmCAH
+ProductSecret,data,string,GhMHSFOWtg0qRWhP

@@ -9,6 +9,8 @@ set(COMPONENT_SRCS
     "app_lcd.c"
     "app_sntp.c"
     "app_weather.c"
+    "app_mqtt_baidubce.c"
+    "app_mqtt_aliyun"
 )
 
 set(COMPONENT_ADD_INCLUDEDIRS "include" "fonts")
@@ -20,12 +22,15 @@ set(COMPONENT_REQUIRES
     nvs_flash
     esp_http_server
     weather_seniverse
+    mqtt
+    app-aliyun
 )
 
 set(COMPONENT_EMBED_FILES
     "www/index.html.gz"
     "www/style.css.gz"
     "www/script.js.gz"
+    "iot_eclipse_org.pem"
 )
 
 register_component()

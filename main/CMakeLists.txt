@@ -10,6 +10,7 @@ set(COMPONENT_SRCS
     "app_sntp.c"
     "app_weather.c"
     "app_mqtt_baidubce.c"
+    "app_mqtt_aliyun"
 )
 
 set(COMPONENT_ADD_INCLUDEDIRS "include" "fonts")
@@ -22,6 +23,7 @@ set(COMPONENT_REQUIRES
     esp_http_server
     weather_seniverse
     mqtt
+    app-aliyun
 )
 
 set(COMPONENT_EMBED_FILES

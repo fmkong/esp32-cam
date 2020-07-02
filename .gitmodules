@@ -10,6 +10,7 @@
 [submodule "components/weather_seniverse"]
 	path = components/weather_seniverse
 	url = git@github.com:fmkong/weather_seniverse.git
-[submodule ".\\components\\esp-aliyun"]
-	path = .\\components\\esp-aliyun
+[submodule "components/esp-aliyun"]
+	path = components/esp-aliyun
 	url = git@github.com:fmkong/esp-aliyun.git
+	branch = master

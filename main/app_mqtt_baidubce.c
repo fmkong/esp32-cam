@@ -46,26 +46,26 @@ static esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event)
             // get_time，
             // get_local_humidity，
             // get_location_coordinate
-			xEventGroupSetBits(mqtt_event_group, CONNECTED_BIT);
-			msg_id = esp_mqtt_client_subscribe(client, "message_sync", 0);
+            xEventGroupSetBits(mqtt_event_group, CONNECTED_BIT);
+            msg_id = esp_mqtt_client_subscribe(client, "message_sync", 0);
             ESP_LOGI(TAG, "sent subscribe successful, msg_id=%d", msg_id);
 
             msg_id = esp_mqtt_client_subscribe(client, "get_local_weather", 0);
             ESP_LOGI(TAG, "sent subscribe successful, msg_id=%d", msg_id);
-			//取消订阅主题函数
+            //取消订阅主题函数
             //msg_id = esp_mqtt_client_unsubscribe(client, "/topic/qos1");
             //ESP_LOGI(TAG, "sent unsubscribe successful, msg_id=%d", msg_id);
             break;
         case MQTT_EVENT_DISCONNECTED:  //MQTT断开连接事件
             ESP_LOGI(TAG, "MQTT_EVENT_DISCONNECTED");
-			xEventGroupClearBits(mqtt_event_group, CONNECTED_BIT);
+            xEventGroupClearBits(mqtt_event_group, CONNECTED_BIT);
 
             break;
 
         case MQTT_EVENT_SUBSCRIBED:  //MQTT发送订阅事件
             ESP_LOGI(TAG, "MQTT_EVENT_SUBSCRIBED, msg_id=%d", event->msg_id);
             //发布主题函数
-			//msg_id = esp_mqtt_client_publish(client, "/topic/qos0", "data", 0, 0, 0);
+            //msg_id = esp_mqtt_client_publish(client, "/topic/qos0", "data", 0, 0, 0);
             //ESP_LOGI(TAG, "sent publish successful, msg_id=%d", msg_id);
             break;
         case MQTT_EVENT_UNSUBSCRIBED: //MQTT取消订阅事件
@@ -82,12 +82,12 @@ static esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event)
         case MQTT_EVENT_ERROR: //MQTT错误事件
             xEventGroupClearBits(mqtt_event_group, CONNECTED_BIT);
 
-			ESP_LOGI(TAG, "MQTT_EVENT_ERROR");
+            ESP_LOGI(TAG, "MQTT_EVENT_ERROR");
             break;
         default:
             ESP_LOGI(TAG, "Other event id:%d", event->event_id);
 
-			break;
+            break;
     }
     return ESP_OK;
 }
@@ -95,11 +95,11 @@ static esp_err_t mqtt_event_handler(esp_mqtt_event_handle_t event)
 static void mqtt_app_start(void)
 {
     const esp_mqtt_client_config_t mqtt_cfg = {
-		.client_id = "esp32",
-		.host = "b2jvzza.mqtt.iot.gz.baidubce.com",
-		.port = 1883,
-		.username =  "b2jvzza/calendar",
-		.password = "Vbv6y0TMZFgCiIxZ",
+        .client_id = "esp32",
+        .host = "b2jvzza.mqtt.iot.gz.baidubce.com",
+        .port = 1883,
+        .username =  "b2jvzza/calendar",
+        .password = "Vbv6y0TMZFgCiIxZ",
         .event_handle = mqtt_event_handler,
         .cert_pem = (const char *)iot_eclipse_org_pem_start,
     };

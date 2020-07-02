@@ -21,6 +21,7 @@
 #endif
 #include "app_weather.h"
 #include "app_mqtt_baidubce.h"
+#include "app_mqtt_aliyun.h"
 
 EventGroupHandle_t event_group;
 
@@ -60,6 +61,7 @@ void app_main()
   #endif
   app_wifi_startup();
 
+
   for (;;) {
 	  uxBits = xEventGroupWaitBits(event_group, WIFI_CONNECTED_BIT | WIFI_SOFTAP_BIT,pdFALSE,pdFALSE,500 / portTICK_PERIOD_MS);
 	  if (uxBits > 0) {
@@ -81,6 +83,7 @@ void app_main()
       #ifdef CONFIG_USE_SSD1306_LCD_DRIVER
       app_lcd_startup();
       #endif
+      app_mqtt_aliyun_start();
       return;
     }
   }

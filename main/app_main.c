@@ -22,6 +22,7 @@
 #include "app_weather.h"
 #include "app_mqtt_baidubce.h"
 #include "app_mqtt_aliyun.h"
+#include "app_epd4in2b.h"
 
 EventGroupHandle_t event_group;
 
@@ -51,6 +52,7 @@ void app_main()
   ESP_ERROR_CHECK(esp_event_loop_create_default());
   event_group = xEventGroupCreate();
 
+  esp_log_level_set("bus_lock", ESP_LOG_INFO);
   app_settings_startup();
 
   #ifdef CONFIG_CAMERA_ENABLED
@@ -69,7 +71,8 @@ void app_main()
       app_sntp_startup();
       #endif
       // app_weather_startup();
-      app_mqtt_start();
+      // app_mqtt_start();
+      app_epd_startup();
       #ifdef CONFIG_MDNS_ENABLED
       ESP_ERROR_CHECK(mdns_init());
       ESP_ERROR_CHECK(mdns_hostname_set(settings.hostname));
@@ -83,7 +86,7 @@ void app_main()
       #ifdef CONFIG_USE_SSD1306_LCD_DRIVER
       app_lcd_startup();
       #endif
-      app_mqtt_aliyun_start();
+      // app_mqtt_aliyun_start();
       return;
     }
   }

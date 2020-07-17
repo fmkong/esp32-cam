@@ -22,7 +22,10 @@
 #include "app_weather.h"
 #include "app_mqtt_baidubce.h"
 #include "app_mqtt_aliyun.h"
-#include "app_epd4in2b.h"
+#include "app_epd3in9.h"
+#include "app_sht11.h"
+
+static const char *TAG = "main";
 
 EventGroupHandle_t event_group;
 
@@ -62,7 +65,8 @@ void app_main()
   app_illuminator_startup();
   #endif
   app_wifi_startup();
-
+  app_sht11_startup();
+  app_epd_startup();
 
   for (;;) {
 	  uxBits = xEventGroupWaitBits(event_group, WIFI_CONNECTED_BIT | WIFI_SOFTAP_BIT,pdFALSE,pdFALSE,500 / portTICK_PERIOD_MS);
@@ -72,7 +76,7 @@ void app_main()
       #endif
       // app_weather_startup();
       // app_mqtt_start();
-      app_epd_startup();
+
       #ifdef CONFIG_MDNS_ENABLED
       ESP_ERROR_CHECK(mdns_init());
       ESP_ERROR_CHECK(mdns_hostname_set(settings.hostname));

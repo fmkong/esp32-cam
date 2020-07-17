@@ -12,7 +12,7 @@
 #include "lwip/ip4_addr.h"
 #include "image.h"
 
-#include "epd4in2b.h"
+#include "epd3in9.h"
 #include "epdpaint.h"
 #include "icons.h"
 #include "ubuntu10.h"
@@ -50,7 +50,7 @@ static double precip_probability;
 
 static Forecast forecasts[8];
 
-static const char *TAG = "app_epd4in2b";
+static const char *TAG = "app_epd3in9";
 static TaskHandle_t xUpdateEpdWeatherTaskHandle = NULL;
 
 const char* deg_to_compass(int degrees)
@@ -218,7 +218,7 @@ static void weather_to_display_task(void* pvParameters)
         // vTaskDelay(5000 / portTICK_RATE_MS);
     }
 
-    // epd4in2_sleep();
+    // epd3in9_sleep();
 
     ESP_LOGI(TAG, "e-Paper sleep");
     vTaskDelete(NULL);
@@ -233,14 +233,14 @@ static void time_to_display_task(void* pvParameters)
 
 void app_epd_startup()
 {
-    if (epd4in2b_init() != 0) {
+    if (epd3in9_init() != 0) {
         ESP_LOGE(TAG, "e-Paper init failed");
         vTaskDelay(2000 / portTICK_RATE_MS);
         return;
     }
-    ESP_LOGI(TAG, "e-Paper initialized");
-    clear_frame();
-    xTaskCreate(weather_to_display_task, "weather_display", 10240, NULL, tskIDLE_PRIORITY, &xUpdateEpdWeatherTaskHandle );
+    // ESP_LOGI(TAG, "e-Paper initialized");
+    // clear_frame();
+    // xTaskCreate(weather_to_display_task, "weather_display", 10240, NULL, tskIDLE_PRIORITY, &xUpdateEpdWeatherTaskHandle );
 
 }
 

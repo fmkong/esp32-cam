@@ -11,7 +11,8 @@ set(COMPONENT_SRCS
     "app_weather.c"
     "app_mqtt_baidubce.c"
     "app_mqtt_aliyun"
-    "app_epd4in2b.c"
+    "app_epd3in9.c"
+    "app_sht11.c"
 )
 
 set(COMPONENT_ADD_INCLUDEDIRS "include" "fonts")
@@ -25,7 +26,8 @@ set(COMPONENT_REQUIRES
     weather_seniverse
     mqtt
     app-aliyun
-    epd4in2b
+    epd3in9
+    esp-sht11
 )
 
 set(COMPONENT_EMBED_FILES

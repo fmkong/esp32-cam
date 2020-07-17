@@ -39,9 +39,9 @@
 #include <string.h>
 
 // Pin definition
-#define MOSI_PIN GPIO_NUM_14
-#define CLK_PIN GPIO_NUM_13
-#define CS_PIN GPIO_NUM_15
+#define MOSI_PIN GPIO_NUM_23
+#define CLK_PIN GPIO_NUM_18
+#define CS_PIN GPIO_NUM_5
 #define DC_PIN GPIO_NUM_27
 #define RST_PIN GPIO_NUM_26
 #define BUSY_PIN GPIO_NUM_25
